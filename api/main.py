@@ -3,8 +3,8 @@ from pydantic import BaseModel
 import spacy, gdown, os
 from configparser import ConfigParser
 
-model_dir = "./best-model"
-model_source = "https://drive.google.com/drive/folders/18RKX_auvDBN_2v1FUNbLu7UZET5d1hJX?usp=sharing"
+model_dir = "./best-model-CNN-v1"
+model_source = "https://drive.google.com/drive/folders/1Poi1kOOB0Yf7fmKG2vMZOEaYBo8lh1OE?usp=sharing"
 
 
 gdown.download_folder(model_source, 
