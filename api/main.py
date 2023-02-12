@@ -2,6 +2,8 @@ from fastapi import FastAPI, Response
 from pydantic import BaseModel
 import spacy, gdown, os
 from configparser import ConfigParser
+import custom_components
+
 
 model_dir = "./best-model-CNN-v1"
 model_source = "https://drive.google.com/drive/folders/1Poi1kOOB0Yf7fmKG2vMZOEaYBo8lh1OE?usp=sharing"
