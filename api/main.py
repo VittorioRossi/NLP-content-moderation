@@ -1,24 +1,28 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI
 from pydantic import BaseModel
-import spacy, gdown, os
-from configparser import ConfigParser
-import custom_components
+import gdown, os
 
-
-model_dir = "./best-model-CNN-v1"
-model_source = "https://drive.google.com/drive/folders/1Poi1kOOB0Yf7fmKG2vMZOEaYBo8lh1OE?usp=sharing"
-
-
-gdown.download_folder(model_source, 
-                      quiet = True, 
-                      use_cookies = False)
-
-
-nlp_model = spacy.load(model_dir)
+from preprocessing import preprocess_text
+from keras.models import load_model
+import uvicorn
 
 app = FastAPI(tags=["sentence"])
 
-# defin
+
+print("Running...")
+model_dir = "./gloveBiGRU"
+model_source = "https://drive.google.com/drive/folders/1-1XCaCdyiCiAgZQQGz3R1144r79kbpcX?usp=sharing"
+
+
+if not os.path.exists("./gloveBiGRU"):
+    print("Downloading the model")
+    gdown.download_folder(model_source, 
+                        quiet = True, 
+                        use_cookies = False)
+
+
+nlp_model = load_model(model_dir)
+
 class Input(BaseModel):
     sentence: str
 
@@ -34,9 +38,12 @@ def main():
 
 @app.post("/predict")
 def predict(input:Input):
-    print(input.sentence)
-    res  = nlp_model(input.sentence).cats
+    real_input = preprocess_text(input.sentence)
+    print(real_input)
+    res  = nlp_model.predict(real_input)
     print(res)
     return res
 
 
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

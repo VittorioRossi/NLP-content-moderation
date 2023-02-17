@@ -1,9 +1,0 @@
-{
-  "labels":[
-    "quality",
-    "toxic",
-    "spam"
-  ],
-  "threshold":0.5,
-  "positive_label":null
-}
