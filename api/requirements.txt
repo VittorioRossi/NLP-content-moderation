@@ -1,6 +1,9 @@
-fastapi 
+fstapi 
 gdown
 tensorflow
 keras
 scikit-learn
 fastapi
+pydantic
+uvicorn
+
