@@ -1,6 +1,6 @@
 fstapi 
 gdown
-tensorflow
+tensorflow-cpu
 keras
 scikit-learn
 fastapi
