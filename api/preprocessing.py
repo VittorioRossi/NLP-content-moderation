@@ -31,7 +31,7 @@ def replace_hashtags(phrase:str):
   return re.sub("\s#[A-Za-z0-9]+", repl, phrase)
 
 
-def preprocess_text(df):
+def preprocess_df(df):
   df.text = df.text.apply(replace_users)
   df.text = df.text.apply(replace_hashtags)
   df.text = df.text.apply(replace_url)
@@ -44,3 +44,13 @@ def preprocess_text(df):
   y = LabelBinarizer().fit_transform(df.label)
 
   return df.text, df.label
+
+def preprocess_string(string):
+  string = replace_users(string)
+  string = replace_hashtags(string)
+  string = replace_url(string)
+  string = clean_text(string)
+  string = replace_numbers(string)
+  #string = replace_not_in_glove(string)
+
+  return string

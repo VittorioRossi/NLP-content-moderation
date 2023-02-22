@@ -1,7 +1,0 @@
-gdown
-tensorflow-cpu
-keras
-scikit-learn
-fastapi
-pydantic
-uvicorn
